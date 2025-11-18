@@ -1,0 +1,159 @@
+.contactSection {
+  background-color: #f5f5f5;
+  padding: 80px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heading {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a3a52;
+  margin-bottom: 60px;
+  letter-spacing: -0.5px;
+}
+
+.content {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.leftColumn {
+  flex: 1;
+}
+
+.tagline {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a3a52;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.link {
+  font-size: 14px;
+  color: #1a3a52;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: #2563eb;
+}
+
+.text {
+  font-size: 14px;
+  color: #1a3a52;
+  font-weight: 500;
+}
+
+.form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.input,
+.textarea {
+  padding: 12px 16px;
+  border: none;
+  background-color: white;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  font-family: inherit;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s ease;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: #999;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submitBtn {
+  padding: 12px 32px;
+  background-color: #1a3a52;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+.submitBtn:hover {
+  background-color: #0f2438;
+}
+
+.submitBtn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .heading {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+
+  .contactSection {
+    padding: 60px 20px;
+  }
+}
