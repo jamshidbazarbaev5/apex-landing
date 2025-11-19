@@ -1,4 +1,10 @@
+'use client';
+
+import { useScrollAnimation } from "../animations/useScrollAnimation";
+
 export default function FleetEquipment() {
+  const { ref, isVisible } = useScrollAnimation();
+
   const vehicles = [
     {
       id: 1,
@@ -55,6 +61,26 @@ export default function FleetEquipment() {
   return (
     <>
       <style jsx>{`
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
         .fleet-section {
           background-color: #F5F5F5;
           padding: 80px 40px;
@@ -68,6 +94,8 @@ export default function FleetEquipment() {
         .fleet-header {
           text-align: center;
           margin-bottom: 60px;
+          animation: ${isVisible ? 'fadeInDown 0.6s ease-out' : 'none'};
+          opacity: ${isVisible ? 1 : 0};
         }
 
         .fleet-title {
@@ -206,7 +234,7 @@ export default function FleetEquipment() {
         }
       `}</style>
 
-      <section className="fleet-section">
+      <section className="fleet-section" ref={ref}>
         <div className="fleet-container">
           <div className="fleet-header">
             <h2 className="fleet-title">
@@ -218,8 +246,14 @@ export default function FleetEquipment() {
           </div>
 
           <div className="fleet-grid">
-            {vehicles.map((vehicle) => (
-              <div key={vehicle.id} className="vehicle-card">
+            {vehicles.map((vehicle, index) => (
+              <div 
+                key={vehicle.id} 
+                className="vehicle-card"
+                style={{
+                  animation: isVisible ? `scaleIn 0.5s ease-out ${index * 0.05}s both` : 'none',
+                }}
+              >
                 <h3 className="vehicle-name">{vehicle.name}</h3>
                 <div className="vehicle-image-container">
                   <img

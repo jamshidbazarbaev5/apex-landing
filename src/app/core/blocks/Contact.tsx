@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useScrollAnimation } from "../animations/useScrollAnimation";
 import styles from '../styles/contact.module.css'
 
 export default function Contact() {
+  const { ref, isVisible } = useScrollAnimation();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -27,12 +29,60 @@ export default function Contact() {
   };
 
   return (
-    <section className={styles.contactSection}>
+    <section 
+      className={styles.contactSection}
+      ref={ref}
+    >
+      <style jsx>{`
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes fadeInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        @keyframes fadeInRight {
+          from {
+            opacity: 0;
+            transform: translateX(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+      `}</style>
       <div className={styles.container}>
-        <h2 className={styles.heading}>Contact Us</h2>
+        <h2 
+          className={styles.heading}
+          style={{
+            animation: isVisible ? 'fadeInDown 0.6s ease-out' : 'none',
+            opacity: isVisible ? 1 : 0,
+          }}
+        >
+          Contact Us
+        </h2>
 
         <div className={styles.content}>
-          <div className={styles.leftColumn}>
+          <div 
+            className={styles.leftColumn}
+            style={{
+              animation: isVisible ? 'fadeInLeft 0.6s ease-out 0.1s both' : 'none',
+            }}
+          >
             <h3 className={styles.tagline}>Let's Move Freight Together</h3>
             <p className={styles.description}>
               Have a question or need a quote? We're always ready to help<br />
@@ -72,7 +122,13 @@ export default function Contact() {
             </div>
           </div>
 
-          <form className={styles.form} onSubmit={handleSubmit}>
+          <form 
+            className={styles.form} 
+            onSubmit={handleSubmit}
+            style={{
+              animation: isVisible ? 'fadeInRight 0.6s ease-out 0.1s both' : 'none',
+            }}
+          >
             <div className={styles.formGroup}>
               <input
                 type="text"

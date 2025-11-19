@@ -1,11 +1,33 @@
+'use client';
+
 import Image from "next/image"
+import { useScrollAnimation } from "../animations/useScrollAnimation";
+
 export default function About() {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
-    <section className="about-section">
+    <section 
+      className="about-section"
+      ref={ref}
+    >
       <div className="about-container">
-        <h2 className="about-title">About Axper</h2>
+        <h2 
+          className="about-title"
+          style={{
+            animation: isVisible ? 'fadeInDown 0.6s ease-out' : 'none',
+            opacity: isVisible ? 1 : 0,
+          }}
+        >
+          About Axper
+        </h2>
         
-        <div className="about-content">
+        <div 
+          className="about-content"
+          style={{
+            animation: isVisible ? 'fadeInUp 0.8s ease-out 0.2s both' : 'none',
+          }}
+        >
           <div className="about-text">
             <p>At Axper, we specialize in dependable, efficient, and flexible logistics solutions across the U.S. and Canada</p>
             
@@ -26,6 +48,27 @@ export default function About() {
       </div>
       
       <style jsx>{`
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
         .about-section {
           background-color: #f5f5f5;
           padding: 80px 40px;

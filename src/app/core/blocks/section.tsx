@@ -1,8 +1,11 @@
 'use client';
 
+import { useScrollAnimation } from "../animations/useScrollAnimation";
 import styles from '../styles/TransportSolutions.module.css'
 
 export default function TransportServices() {
+  const { ref, isVisible } = useScrollAnimation();
+
   const services = [
     {
       title: 'Full Truckload (FTL)',
@@ -52,9 +55,50 @@ export default function TransportServices() {
   ];
 
   return (
-    <section className={styles.section}>
+    <section 
+      className={styles.section}
+      ref={ref}
+    >
+      <style jsx>{`
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `}</style>
       <div className={styles.container}>
-        <div className={styles.header}>
+        <div 
+          className={styles.header}
+          style={{
+            animation: isVisible ? 'fadeInDown 0.6s ease-out' : 'none',
+            opacity: isVisible ? 1 : 0,
+          }}
+        >
           <h2 className={styles.title}>Transport Solutions That Work for You</h2>
           <p className={styles.subtitle}>
             No matter the load — we deliver safely, on time, and with full visibility.
@@ -63,7 +107,13 @@ export default function TransportServices() {
 
         <div className={styles.grid}>
           {services.map((service, index) => (
-            <div key={index} className={styles.card}>
+            <div 
+              key={index} 
+              className={styles.card}
+              style={{
+                animation: isVisible ? `scaleIn 0.5s ease-out ${index * 0.05}s both` : 'none',
+              }}
+            >
               <div className={styles.imageWrapper}>
                 <img
                   src={service.image}
