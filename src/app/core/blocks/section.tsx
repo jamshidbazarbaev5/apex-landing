@@ -1,135 +1,37 @@
-'use client';
+import React from 'react';
+import { ServiceItem } from './types';
 
-import { useScrollAnimation } from "../animations/useScrollAnimation";
-import styles from '../styles/TransportSolutions.module.css'
-
-export default function TransportServices() {
-  const { ref, isVisible } = useScrollAnimation();
-
-  const services = [
-    {
-      title: 'Full Truckload (FTL)',
-      description: 'Direct delivery with a dedicated truck and driver, ideal for large shipments.',
-      image: '/FTL.jpg'
-    },
-    {
-      title: 'Medical Equipment',
-      description: 'Time-critical and temperature-controlled deliveries for healthcare and hospitals.',
-      image: 'medical.jpg'
-    },
-    {
-      title: 'Local Courier Deliveries',
-      description: 'Same-day solutions for documents and small parcels.',
-      image: 'local.jpg'
-    },
-    {
-      title: 'Less-Than-Truckload (LTL)',
-      description: 'Reliable and cost-efficient transport for smaller shipments.',
-      image: 'LTL.jpg'
-    },
-    {
-      title: 'Casino & Gaming Equipment',
-      description: 'Secure, high-value freight handling with dedicated tracking.',
-      image: 'casino.jpg',
-    },
-    {
-      title: 'Door-to-Door Delivery',
-      description: 'Convenient and reliable pickup and drop-off service anywhere in the U.S. and Canada.',
-      image: 'door.jpg'
-    },
-    {
-      title: 'Cross-Border Shipping',
-      description: 'Seamless movement between the U.S. and Canada with customs support.',
-      image: 'Border.jpg'
-    },
-    {
-      title: 'Trade Shows & Events',
-      description: 'On-time setup and breakdown deliveries for exhibitions and conventions.',
-      image: 'trad.jpg'
-    },
-    {
-      title: 'White Glove Service',
-      description: 'Premium handling for fragile, high-value, or specialized freight.',
-      image: 'glove.jpg'
-    },
-  ];
-
-  return (
-    <section 
-      className={styles.section}
-      ref={ref}
-    >
-      <style jsx>{`
-        @keyframes fadeInDown {
-          from {
-            opacity: 0;
-            transform: translateY(-30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.9);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-      `}</style>
-      <div className={styles.container}>
-        <div 
-          className={styles.header}
-          style={{
-            animation: isVisible ? 'fadeInDown 0.6s ease-out' : 'none',
-            opacity: isVisible ? 1 : 0,
-          }}
-        >
-          <h2 className={styles.title}>Transport Solutions That Work for You</h2>
-          <p className={styles.subtitle}>
-            No matter the load — we deliver safely, on time, and with full visibility.
-          </p>
-        </div>
-
-        <div className={styles.grid}>
-          {services.map((service, index) => (
-            <div 
-              key={index} 
-              className={styles.card}
-              style={{
-                animation: isVisible ? `scaleIn 0.5s ease-out ${index * 0.05}s both` : 'none',
-              }}
-            >
-              <div className={styles.imageWrapper}>
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className={styles.image}
-                />
-                <div className={styles.overlay}></div>
-              </div>
-              <div className={styles.content}>
-                <h3 className={styles.cardTitle}>{service.title}</h3>
-                <p className={styles.cardDescription}>{service.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+interface ServiceCardProps {
+  item: ServiceItem;
 }
+
+export const ServiceCard: React.FC<ServiceCardProps> = ({ item }) => {
+  return (
+    <div className="group relative w-full h-64 sm:h-72 lg:h-60 overflow-hidden rounded-[2.5rem] shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+      {/* Background Image */}
+      <img
+        src={item?.image}
+        alt={item?.title}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+      />
+
+      {/* Colored Tint Overlay - This provides the specific 'ome colors' requested */}
+      {/* Using mix-blend-multiply or just opacity can work, but direct opacity is safer for text readability */}
+      <div className={`absolute inset-0 ${item?.tintClass} transition-all duration-300`} />
+
+      {/* Gradient Overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 opacity-80" />
+
+      {/* Content */}
+      <div className="absolute inset-0 z-10 flex flex-col justify-center items-center p-6 sm:p-8 text-center">
+        <h3 className="text-white text-xl sm:text-2xl font-bold mb-3 drop-shadow-lg tracking-wide">
+          {item?.title}
+        </h3>
+        {/* Added max-width to prevent text from touching edges too much, matching the pill look */}
+        <p className="text-gray-100 text-sm sm:text-[0.95rem] leading-snug max-w-[280px] drop-shadow-md font-normal opacity-95">
+          {item.description}
+        </p>
+      </div>
+    </div>
+  );
+};

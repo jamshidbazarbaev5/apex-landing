@@ -12,6 +12,9 @@ export default function Contact() {
     email: '',
     message: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -21,11 +24,36 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Add your form submission logic here
-    setFormData({ name: '', phone: '', email: '', message: '' });
+    setIsLoading(true);
+    setSuccessMessage('');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('https://axpergroup.com/api/v1/contact-form/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      setSuccessMessage('Message sent successfully! We will contact you soon.');
+      setFormData({ name: '', phone: '', email: '', message: '' });
+      
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => setSuccessMessage(''), 5000);
+    } catch (error) {
+      setErrorMessage('Failed to send message. Please try again.');
+      console.error('Form submission error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -176,7 +204,25 @@ export default function Contact() {
               />
             </div>
 
-            <button type="submit" className={styles.submitBtn}>Submit</button>
+            {successMessage && (
+              <div className={styles.successMessage}>
+                ✓ {successMessage}
+              </div>
+            )}
+
+            {errorMessage && (
+              <div className={styles.errorMessage}>
+                ✗ {errorMessage}
+              </div>
+            )}
+
+            <button 
+              type="submit" 
+              className={styles.submitBtn}
+              disabled={isLoading}
+            >
+              {isLoading ? 'Sending...' : 'Submit'}
+            </button>
           </form>
         </div>
       </div>

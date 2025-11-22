@@ -19,7 +19,7 @@ export default function FleetEquipment() {
     {
       id: 2,
       name: "Sprinter Van",
-     image:'/cargovan.png',
+     image:'/sprinter.png',
       features: [
         "More cargo space",
         "GPS-tracked",
@@ -39,7 +39,7 @@ export default function FleetEquipment() {
     {
       id: 4,
       name: "Straight Truck",
-      image:'/cargovan.png',
+      image:'/straight.png',
       features: [
         "Pallet jack & liftgate",
         "Expedited and regional deliveries",
@@ -49,7 +49,7 @@ export default function FleetEquipment() {
     {
       id: 5,
       name: "Semi Truck",
-     image:'/cargovan.png',
+     image:'/dry.png',
       features: [
         "Nationwide coverage",
         "Team drivers available",
