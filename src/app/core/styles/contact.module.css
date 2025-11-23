@@ -1,11 +1,16 @@
 .contactSection {
   background-color: #f5f5f5;
   padding: 80px 20px;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .heading {
@@ -185,11 +190,13 @@
 
 @media (max-width: 768px) {
   .contactSection {
-    padding: 40px 16px;
+    padding: 60px 16px;
   }
 
   .container {
     padding: 0;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   .heading {
@@ -268,7 +275,7 @@
 
 @media (max-width: 480px) {
   .contactSection {
-    padding: 30px 12px;
+    padding: 40px 12px;
   }
 
   .heading {
@@ -286,5 +293,16 @@
 
   .label {
     font-size: 10px;
+  }
+
+  .input,
+  .textarea {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .submitBtn {
+    padding: 8px 24px;
+    font-size: 12px;
   }
 }

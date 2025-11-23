@@ -43,9 +43,10 @@ const Header = () => {
         <nav className="navigation">
           <a href="#home" className="nav-link">HOME</a>
           <a href="#services" className="nav-link">SERVICES</a>
+          <a href="#fleet" className="nav-link">FLEET</a>
           <a href="#about" className="nav-link">ABOUT US</a>
-          <a href="#application" className="nav-link">APPLICATION</a>
           <a href="#contact" className="nav-link">CONTACT US</a>
+          <a href="https://apex-amber-omega.vercel.app/main" className="nav-link">APPLICATION</a>
         </nav>
       </div>
     </header>

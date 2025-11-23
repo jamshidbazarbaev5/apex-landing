@@ -76,12 +76,16 @@ export default function About() {
           display: flex;
           align-items: center;
           justify-content: center;
+          box-sizing: border-box;
+          width: 100%;
+          overflow-x: hidden;
         }
         
         .about-container {
           max-width: 1200px;
           width: 100%;
           margin: 0 auto;
+          box-sizing: border-box;
         }
         
         .about-title {
@@ -155,29 +159,73 @@ export default function About() {
         
         @media (max-width: 768px) {
           .about-section {
-            padding: 60px 30px;
+            padding: 60px 16px;
+          }
+          
+          .about-container {
+            width: 100%;
+            overflow-x: hidden;
           }
           
           .about-content {
             flex-direction: column;
-            gap: 60px;
+            gap: 40px;
           }
           
           .about-title {
             font-size: 28px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
           }
           
           .about-text {
-            gap: 20px;
+            gap: 16px;
           }
           
           .about-text p {
-            font-size: 15px;
+            font-size: 14px;
+          }
+          
+          .axper-logo {
+            width: 300px;
+            height: 300px;
           }
           
           .axper-name {
-            font-size: 40px;
+            font-size: 32px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .about-section {
+            padding: 40px 12px;
+            min-height: auto;
+          }
+
+          .about-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+          }
+
+          .about-text {
+            gap: 12px;
+          }
+
+          .about-text p {
+            font-size: 13px;
+            line-height: 1.5;
+          }
+
+          .axper-logo {
+            width: 200px;
+            height: 200px;
+          }
+
+          .axper-name {
+            font-size: 24px;
+          }
+
+          .axper-tagline {
+            font-size: 12px;
           }
         }
       `}</style>

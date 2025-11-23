@@ -84,11 +84,16 @@ export default function FleetEquipment() {
         .fleet-section {
           background-color: #F5F5F5;
           padding: 80px 40px;
+          box-sizing: border-box;
+          width: 100%;
+          overflow-x: hidden;
         }
 
         .fleet-container {
           max-width: 1400px;
           margin: 0 auto;
+          box-sizing: border-box;
+          width: 100%;
         }
 
         .fleet-header {
@@ -193,7 +198,12 @@ export default function FleetEquipment() {
 
         @media (max-width: 768px) {
           .fleet-section {
-            padding: 60px 20px;
+            padding: 60px 16px;
+          }
+
+          .fleet-container {
+            width: 100%;
+            overflow-x: hidden;
           }
 
           .fleet-title {
@@ -228,8 +238,29 @@ export default function FleetEquipment() {
         }
 
         @media (max-width: 480px) {
+          .fleet-section {
+            padding: 40px 12px;
+          }
+
           .fleet-grid {
             grid-template-columns: 1fr;
+            gap: 12px;
+          }
+
+          .vehicle-card {
+            padding: 16px 12px;
+          }
+
+          .vehicle-name {
+            font-size: 16px;
+          }
+
+          .vehicle-image-container {
+            height: 120px;
+          }
+
+          .vehicle-feature {
+            font-size: 13px;
           }
         }
       `}</style>
