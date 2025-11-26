@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { ServiceCard } from "./core/blocks/section";
 import FleetEquipment from "./core/blocks/FleetEqupment";
-import About from "./core/blocks/About";
+import {About} from "./core/blocks/About";
 import Contact from "./core/blocks/Contact";
 import Footer from "./core/blocks/Footer";
 import Header from "./core/blocks/Header";
