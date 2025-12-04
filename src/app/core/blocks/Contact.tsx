@@ -15,6 +15,7 @@ export default function Contact() {
   const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -244,10 +245,33 @@ export default function Contact() {
               <div className={styles.errorMessage}>✗ {errorMessage}</div>
             )}
 
+            <div className="flex items-start gap-2 mb-4">
+              <input
+                type="checkbox"
+                id="privacy-consent"
+                checked={agreedToTerms}
+                onChange={(e) => setAgreedToTerms(e.target.checked)}
+                className="mt-1 w-4 h-4 text-[#2c3e50] border-gray-300 rounded focus:ring-[#2c3e50]"
+                required
+              />
+              <label htmlFor="privacy-consent" className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                I acknowledge that I have read and understand the{" "}
+                <a 
+                  href="/privacy" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-[#2c3e50] underline hover:text-[#1e2b3a]"
+                >
+                  Privacy Policy & SMS Terms
+                </a>{" "}
+                of Axper, LLC, and I consent to receive SMS messages regarding my application. Reply STOP to opt out at any time.
+              </label>
+            </div>
+
             <button
               type="submit"
               className={styles.submitBtn}
-              disabled={isLoading}
+              disabled={isLoading || !agreedToTerms}
             >
               {isLoading ? "Sending..." : "Submit"}
             </button>

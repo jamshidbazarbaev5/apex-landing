@@ -26,6 +26,7 @@ export default function ContactForm({ formType = "operator" }: ContactFormProps)
   })
   const [submitted, setSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [agreedToTerms, setAgreedToTerms] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -109,9 +110,31 @@ export default function ContactForm({ formType = "operator" }: ContactFormProps)
                   ✓ Message sent successfully! We will contact you soon.
                 </div>
               )}
+              <div className="flex items-start gap-2">
+                <input
+                  type="checkbox"
+                  id="privacy-consent-form"
+                  checked={agreedToTerms}
+                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                  className="mt-1 w-4 h-4 text-[#2c3e50] border-gray-300 rounded focus:ring-[#2c3e50]"
+                  required
+                />
+                <label htmlFor="privacy-consent-form" className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  I acknowledge that I have read and understand the{" "}
+                  <a 
+                    href="/privacy" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#2c3e50] underline hover:text-[#1e2b3a]"
+                  >
+                    Privacy Policy & SMS Terms
+                  </a>{" "}
+                  of Axper, LLC, and I consent to receive SMS messages regarding my application. Reply STOP to opt out at any time.
+                </label>
+              </div>
               <Button
                 type="submit"
-                disabled={isLoading}
+                disabled={isLoading || !agreedToTerms}
                 className="w-full bg-[#2c3e50] hover:bg-[#1e2b3a] text-white px-6 sm:px-8 h-10 sm:h-11 md:h-12 rounded-full disabled:opacity-50 text-sm sm:text-base font-medium"
               >
                 {isLoading ? 'Sending...' : 'Submit'}

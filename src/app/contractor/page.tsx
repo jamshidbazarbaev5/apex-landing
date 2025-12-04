@@ -10,7 +10,7 @@ export default function ContractorPage() {
       <main className="min-h-screen bg-[#e5e5e5] flex items-center justify-center px-3 sm:px-4 md:px-6 py-8 sm:py-12 md:py-16">
       <div className="max-w-4xl w-full text-center">
         {/* Main Heading */}
-        <h1 className="text-[#3d4f5f] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mt-8 sm:mt-12 md:mt-20 mb-4">Independent Contractor (Partner with Us)</h1>
+        <h1 className="text-[#3d4f5f] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold sm:mt-12 md:mt-20 mt-20">Independent Contractor (Partner with Us)</h1>
 
         {/* Subtitle */}
         <p className="text-[#5a6a7a] text-sm sm:text-base md:text-lg mb-6 sm:mb-8 leading-relaxed px-2">
@@ -102,7 +102,27 @@ export default function ContractorPage() {
         </div>
 
         {/* Apply Button */}
-        <div className="px-2">
+        <div className="px-2 max-w-2xl mx-auto">
+          <div className="flex items-start gap-2 mb-4">
+            <input
+              type="checkbox"
+              id="privacy-consent-contractor"
+              className="mt-1 w-4 h-4 text-[#2c3e50] border-gray-300 rounded focus:ring-[#2c3e50]"
+              required
+            />
+            <label htmlFor="privacy-consent-contractor" className="text-xs sm:text-sm text-gray-600 leading-relaxed text-left">
+              I acknowledge that I have read and understand the{" "}
+              <a 
+                href="/privacy" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#2c3e50] underline hover:text-[#1e2b3a]"
+              >
+                Privacy Policy & SMS Terms
+              </a>{" "}
+              of Axper, LLC, and I consent to receive SMS messages regarding my application. Reply STOP to opt out at any time.
+            </label>
+          </div>
           <a href="https://axpergroup.com/application/">
             <button className="bg-gray-700 rounded-4xl hover:bg-[#1c242b] active:bg-black text-white font-semibold text-xs sm:text-sm md:text-base tracking-wider px-8 sm:px-12 md:px-16 py-3 sm:py-4 transition-colors duration-200 w-full sm:w-auto">
               APPLY NOW

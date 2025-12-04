@@ -9,7 +9,7 @@ export default function Page(){
     <>
       <Header />
       <div className="min-h-screen bg-gray-100 flex flex-col items-center py-16 px-4 sm:px-8" style={{ fontFamily: 'var(--font-kanit)' }}>
-      <header className="mt-8 sm:mt-12 lg:mt-20 text-center">
+      <header className="mt-20 sm:mt-12 lg:mt-20 text-center">
         <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 tracking-tight">
           What We Offer Owner-Operators
         </h1>

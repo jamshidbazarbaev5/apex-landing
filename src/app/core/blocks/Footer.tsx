@@ -173,6 +173,18 @@ export default function Footer() {
         <div className="footer-text">
           <p className="copyright">© 2025 Axper LLC. All rights reserved.</p>
           <p className="tagline">Reliable logistics. Trusted results.</p>
+          <p className="text-xs sm:text-sm text-gray-200 leading-relaxed mt-2">
+            I acknowledge that I have read and understand the{" "}
+            <a 
+              href="/privacy" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white underline hover:text-gray-300"
+            >
+              Privacy Policy & SMS Terms
+            </a>{" "}
+            of Axper, LLC, and I consent to receive SMS messages regarding my application. Reply STOP to opt out at any time.
+          </p>
         </div>
       </div>
     </footer>

@@ -21,6 +21,7 @@ export default function DriveForUs() {
   const [isLoading, setIsLoading] = useState(false)
   const [successMessage, setSuccessMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
+  const [agreedToTerms, setAgreedToTerms] = useState(false)
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -159,7 +160,29 @@ export default function DriveForUs() {
               {errorMessage && (
                 <div className="error-message">✗ {errorMessage}</div>
               )}
-              <button type="submit" className="submit-button" disabled={isLoading}>
+              <div className="checkbox-container">
+                <input
+                  type="checkbox"
+                  id="privacy-consent-driver"
+                  checked={agreedToTerms}
+                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                  className="checkbox-input"
+                  required
+                />
+                <label htmlFor="privacy-consent-driver" className="acknowledgment-text">
+                  I acknowledge that I have read and understand the{" "}
+                  <a 
+                    href="/privacy" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="privacy-link"
+                  >
+                    Privacy Policy & SMS Terms
+                  </a>{" "}
+                  of Axper, LLC, and I consent to receive SMS messages regarding my application. Reply STOP to opt out at any time.
+                </label>
+              </div>
+              <button type="submit" className="submit-button" disabled={isLoading || !agreedToTerms}>
                 {isLoading ? "Sending..." : "Submit"}
               </button>
             </form>
@@ -332,17 +355,262 @@ export default function DriveForUs() {
           border-radius: 4px;
           border-left: 3px solid #dc3545;
         }
+
+        .checkbox-container {
+          display: flex;
+          align-items: start;
+          gap: 8px;
+        }
+
+        .checkbox-input {
+          margin-top: 2px;
+          width: 16px;
+          height: 16px;
+          cursor: pointer;
+          flex-shrink: 0;
+        }
+
+        .acknowledgment-text {
+          font-size: 12px;
+          color: #666;
+          line-height: 1.5;
+          margin: 0;
+          cursor: pointer;
+        }
+
+        .privacy-link {
+          color: #2c3e50;
+          text-decoration: underline;
+        }
+
+        .privacy-link:hover {
+          color: #1a252f;
+        }
+        
+        @media (max-width: 1200px) {
+          .main-container {
+            padding: 30px 40px 40px;
+          }
+          
+          .content-wrapper {
+            gap: 40px;
+          }
+          
+          .left-section {
+            max-width: 100%;
+          }
+          
+          .right-section {
+            width: 380px;
+            padding-top: 60px;
+          }
+        }
         
         @media (max-width: 1024px) {
+          .main-container {
+            padding: 24px 30px 30px;
+          }
+          
+          .main-title {
+            font-size: 28px;
+            margin-top: 60px;
+          }
+          
           .content-wrapper {
             flex-direction: column;
             align-items: center;
+            gap: 30px;
+          }
+          
+          .left-section {
+            max-width: 100%;
           }
           
           .right-section {
             width: 100%;
             max-width: 420px;
-            padding-top: 40px;
+            padding-top: 20px;
+          }
+          
+          .intro-text {
+            font-size: 15px;
+          }
+          
+          .indent-1 {
+            padding-left: 30px;
+          }
+          
+          .indent-2 {
+            padding-left: 60px;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .main-container {
+            padding: 20px 20px 25px;
+            min-height: auto;
+          }
+          
+          .main-title {
+            font-size: 24px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+          }
+          
+          .content-wrapper {
+            gap: 25px;
+          }
+          
+          .intro-text {
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+          }
+          
+          .section-title {
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+          }
+          
+          .requirements-list li,
+          .provide-list li {
+            font-size: 14px;
+            margin-bottom: 3px;
+          }
+          
+          .indent-1 {
+            padding-left: 20px;
+          }
+          
+          .indent-2 {
+            padding-left: 40px;
+          }
+          
+          .right-section {
+            width: 100%;
+            max-width: 100%;
+            padding-top: 15px;
+          }
+          
+          .form-input,
+          .form-textarea {
+            padding: 12px 14px;
+            font-size: 16px;
+          }
+          
+          .form-textarea {
+            min-height: 80px;
+          }
+          
+          .submit-button {
+            width: 100%;
+            padding: 14px 24px;
+            font-size: 14px;
+          }
+          
+          .success-message,
+          .error-message {
+            font-size: 13px;
+            padding: 8px 10px;
+          }
+
+          .checkbox-input {
+            width: 14px;
+            height: 14px;
+          }
+
+          .acknowledgment-text {
+            font-size: 11px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .main-container {
+            padding: 16px 16px 20px;
+          }
+          
+          .main-title {
+            font-size: 20px;
+            margin-top: 100px;
+            // margin-bottom: 16px;
+            font-weight: 500;
+          }
+          
+          .content-wrapper {
+            gap: 20px;
+          }
+          
+          .intro-text {
+            font-size: 13px;
+            margin-bottom: 18px;
+            line-height: 1.4;
+          }
+          
+          .section-title {
+            font-size: 15px;
+            margin-top: 16px;
+            margin-bottom: 8px;
+            font-weight: 500;
+          }
+          
+          .requirements-list li,
+          .provide-list li {
+            font-size: 13px;
+            margin-bottom: 2px;
+          }
+          
+          .requirements-list li::before,
+          .provide-list li::before {
+            margin-right: 6px;
+            font-size: 14px;
+          }
+          
+          .indent-1 {
+            padding-left: 16px;
+          }
+          
+          .indent-2 {
+            padding-left: 32px;
+          }
+          
+          .contact-form {
+            gap: 12px;
+          }
+          
+          .form-input,
+          .form-textarea {
+            padding: 11px 12px;
+            font-size: 16px;
+            border-radius: 3px;
+          }
+          
+          .form-textarea {
+            min-height: 70px;
+            resize: none;
+          }
+          
+          .submit-button {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 13px;
+            border-radius: 20px;
+          }
+          
+          .success-message,
+          .error-message {
+            font-size: 12px;
+            padding: 7px 8px;
+            margin-bottom: 8px;
+          }
+
+          .checkbox-input {
+            width: 13px;
+            height: 13px;
+          }
+
+          .acknowledgment-text {
+            font-size: 10px;
           }
         }
       `}</style>
